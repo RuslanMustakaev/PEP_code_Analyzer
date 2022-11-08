@@ -60,7 +60,7 @@ class CodeLines:
         self.path = path
         self.line_num = 1
         self.code = code
-        self.code_list = code.split("\n")
+        self.code_list = code.splitlines()
         self.code_line = ""
         self.check_set = set()
         self.blank_lines = 0
@@ -188,8 +188,8 @@ class CodeLines:
                 self.code_check()
                 self.blank_lines = 0
             self.line_num += 1
-        tree1 = ast.parse(self.code)
-        PEP8AstVisitor(self.path).visit(tree1)
+        tree = ast.parse(self.code)
+        PEP8AstVisitor(self.path).visit(tree)
 
 
 def file_open(path: 'path to checked filed') -> "messages with error for file if were found inconsistencies to PEP8":
